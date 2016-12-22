@@ -1,0 +1,190 @@
+/* 全局css公用样式 */
+
+@mixin clearfix() {
+    *zoom: 1;
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+@mixin ellipsis() {
+    overflow: hidden;
+    /* Opera9、10*/
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin word-break() {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+@mixin opacity($opacity: .8) {
+    /* 老对手IE8及以下*/
+    filter: $opacity * 100;
+    opacity: $opacity;
+}
+
+@mixin text-shadow($params: 0px 0px 1px #aaa) {
+    // -moz-text-shadow: $params;
+    -webkit-text-shadow: $params;
+    text-shadow: $params;
+}
+
+@mixin box-shadow($params: 1px 1px 1px #ddd) {
+    -moz-box-shadow: $params;
+    -webkit-box-shadow: $params;
+    box-shadow: $params;
+}
+
+@mixin transition($params) {
+    -webkit-transition: $params;
+    // -moz-transition: $params;
+    // -ms-transition: $params;
+    // -o-transition: $params;
+    transition: $params;
+}
+
+@mixin transform($params) {
+    -webkit-transform: $params;
+    // -moz-transform: $params;
+    // -ms-transform: $params;
+    // -o-transform: $params;
+    transform: $params;
+}
+
+@mixin animation($params) {
+    -webkit-animation: $params;
+    // -moz-animation: $params;
+    // -ms-animation: $params;
+    // -o-animation: $params;
+    animation: $params;
+}
+
+@mixin border-radius($params: 5px) {
+    -webkit-border-radius: $params;
+    // -moz-border-radius: $params;
+    // -ms-border-radius: $params;
+    // -o-border-radius: $params;
+    border-radius: $params;
+}
+
+@mixin linear-gradient($direction:to bottom, $fromColor:#000, $toColor:#fff) {
+    background: -moz-linear-gradient($direction, $fromColor, $toColor);
+    background: -webkit-linear-gradient($direction, $fromColor, $toColor);
+    background: linear-gradient($direction, $fromColor, $toColor);
+    // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$fromColor, endColorstr=$toColor);
+    // -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=$fromColor, endColorstr=$toColor)";
+}
+
+@mixin arrow($direction: bottom, $size: 8px, $color: #000) {
+    width: 0;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    overflow: hidden;
+    border: $size solid transparent;
+    cursor: pointer;
+    @if $direction==top {
+        border-top: none;
+        border-bottom-color: $color;
+    }
+    @else if $direction==bottom {
+        border-top-color: $color;
+        border-bottom: none;
+    }
+    @else if $direction==right {
+        border-left-color: $color;
+        border-right: none;
+    }
+    @else if $direction==left {
+        border-right-color: $color;
+        border-left: none;
+    }
+}
+
+@mixin bg-img-size($w, $h) {
+    width: unquote($w+'px');
+    height: unquote($h+'px');
+    background-size: unquote($w+'px') unquote($h+'px');
+}
+
+@mixin bg-img($url, $w, $h) {
+    display: inline-block;
+    background: url($url) no-repeat 0 0 transparent;
+    vertical-align: middle;
+    @include bg-img-size($w, $h);
+}
+
+@mixin pop($zIndex: 1000) {
+    display: none;
+    position: absolute;
+    z-index: $zIndex;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+/* 全局样式 */
+
+.clearfix {
+    @include clearfix;
+}
+
+.ellipsis {
+    @include ellipsis;
+}
+
+.word-break {
+    @include word-break;
+}
+
+.border-radius {
+    @include border-radius;
+}
+
+.text-shadow {
+    @include text-shadow;
+}
+
+.scrollbar {
+    overflow: auto;
+    &::-webkit-scrollbar-thumb {
+        // background-color: #000;
+        // border-left: 2px solid transparent;
+        // border-top: 2px solid transparent;
+    }
+    &::-webkit-scrollbar-track {
+        // background-color: #000;
+        // border-left: 2px solid transparent;
+        // border-top: 2px solid transparent
+    }
+    &::-webkit-scrollbar {
+        // width: 6px;
+        // height: 6px;
+    }
+}
+
+.scrollbar-x {
+    overflow-x: auto;
+    overflow-y: inherit;
+}
+
+.scrollbar-y {
+    overflow-x: inherit;
+    overflow-y: auto;
+}
+
+.circle {
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    // background: #000;
+    @include border-radius(50%);
+}
