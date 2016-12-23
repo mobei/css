@@ -1,0 +1,36 @@
+/* 基于css3 媒体查询（@media）的hack*/
+
+/*适用于Chrome和Opera的 CSS hack*/
+@media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+  .css_selector {
+    background-color: #000;
+  }
+}
+
+/*适用于Firefox的CSS hack*/
+@-moz-document url-prefix() {
+  .css_selector {
+    background-color: #000;
+  }
+}
+
+/*适用于Safari的CSS hack*/
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  ::i-block-chrome, .css_selector {
+    background-color: #000;
+  }
+}
+
+/*适用于IE10以后的所有版本*/
+@media all and (-ms-high-contrast:none){
+  .css_selector {
+    background-color: #000;
+  }
+}
+ 
+/*适用于IE11*/
+@media all and (-ms-high-contrast:none){
+  *::-ms-backdrop, .css_selector {
+    background-color: #000;
+  }
+}
